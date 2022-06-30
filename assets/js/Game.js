@@ -15,7 +15,7 @@ export default class Game {
         this._elJouer.addEventListener('click', function(){
             
             
-            console.log(new Card());
+            
         })
     }
 

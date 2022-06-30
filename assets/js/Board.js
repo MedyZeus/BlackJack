@@ -41,10 +41,10 @@ export default class Board {
 
     injectPlayer(player) {
         let playerDOM = `
-                    <div class="player ${this.id++}" >
+                    <div class="player ${this.id++}">
                         <h3>Joueur ${this.id}</h3>
-                        <ul></ul>
-                        <span class="total">Total: ${this.pointsTotaux}</span><br>
+                        <ul class="cartesList"></ul>
+                        <span class="total">Total: 0</span><br>
                         <button id="jouer">Jouer</button>
                         <button id="stop">Stop</button>
                     </div><hr>

@@ -1,6 +1,6 @@
 export default class Card {
-    constructor(el) {
-        this._el = el;
+    constructor() {
+        
         this._types = ['Pique', 'Carreau', 'Trèfle', 'Cœur '];
         this._nums = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
         this._cartesTab = [];
@@ -29,7 +29,7 @@ export default class Card {
             this._cartesTab[i] = this._cartesTab[j];
             this._cartesTab[j] = temp
         }
-        /* console.log(this._cartesTab); */
+        
     }
 
     }

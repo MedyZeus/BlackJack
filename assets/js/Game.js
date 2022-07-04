@@ -3,33 +3,28 @@ import Card from "./Card.js";
 export default class Game {
     constructor(el) {
         this._el = el;
+        
+        
 
-        this._elDivJoueur = document.querySelector('.player');
-        this._elJouer = this._elDivJoueur.querySelector('#jouer');
-        this._elStop = document.querySelector('#stop');
 
         this.init();
     }
 
-    init() {
-        this._elJouer.addEventListener('click', function(){
-            
-            
-            
-        })
-    }
+   /*  init() {
+
+    } */
 
     debutPartie() {
 
     }
 
- 
+
 
 
 
 
     //mets en place les listeners des boutons
- /*    btnBehaviours = () => {
+/*    btnBehaviours = () => {
         this._players.forEach((player) => {
         //desactive actions pour joueurs don't ce n'est pas le tour
         player.disableBehaviour();

@@ -8,11 +8,10 @@ export default class Board {
         this._elSubmit = this._elForm.querySelector('#submit');
         this._elListJoueurs = document.querySelector('.joueurs');
         this._joueursTab = [];
-
         this.init();
+        //let id = 0;
     }
     
-    id = 0;
     
     init() {
         this._elSubmit.addEventListener('click', function(e) {
@@ -24,22 +23,16 @@ export default class Board {
             let valeurNB = this._elChamp.value;
 
             if (!isNaN(valeurNB) && valeurNB > 0) {
-                let plyr = { total: 0 };
-                
                 for (let i = 0; i < valeurNB; i++) {
-                    this._joueursTab.push(this.injectPlayer(plyr))
+                    this.injectPlayer(i);
                 }
                 this.enleverFormulaire()
-
             }
         }.bind(this))
     }
 
-    /* get pointsTotaux() {
-        return this._total;
-    } */
 
-    injectPlayer(player) {
+    injectPlayer() {
         let playerDOM = `
                     <div class="player ${this.id++}">
                         <h3>Joueur ${this.id}</h3>
@@ -50,8 +43,8 @@ export default class Board {
                     </div><hr>
         `
         this._elListJoueurs.insertAdjacentHTML('beforeend', playerDOM);
-
-        new Player(this._elListJoueurs.lastElementChild);
+        let joueur = new Player(this._elListJoueurs.lastElementChild);
+        this._joueursTab.push(joueur);
     }
 
     enleverFormulaire() {

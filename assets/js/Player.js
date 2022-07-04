@@ -1,46 +1,52 @@
 import Card from "./Card.js";
 import Game from "./Game.js";
-export default class Player extends Game{
-    constructor(carte) {
-        super();
-        this._carte = carte;
-        this._total = 0;
-        this._id = 0;
-        this._cardsTab = [];
+export default class Player {
+    constructor(el) {
+        this._el = el;
         this._elDivJoueur = document.querySelector('.player');
         this._elJouer = this._elDivJoueur.querySelector('#jouer');
-        this._elStop = document.querySelector('#stop');
+        this._elStop = this._elDivJoueur.querySelector('#stop');
         this._cartesList = this._elDivJoueur.querySelector('.cartesList');
-        this._types = ['Pique', 'Carreau', 'Trèfle', 'Cœur'];
-        this._nums = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
+        this._total = 0;
+
 
         this.init();
     }
 
     init() {
+        this.jouer();
+        this.stop();
+    }
+    
+    jouer() {        
         this._elJouer.addEventListener('click', function() {
-            let carte = { numero: this._nums[Math.floor(Math.random() * 13) + 1], 
-                type: this._types[Math.floor(Math.random() * 4)]};
+            let carte = new Card();
             this.injectCard(carte);
-            this._total += carte.numero;
-            this._elDivJoueur.querySelector('.total').innerHTML = `Total: ${this._total}`;
+            this._total += carte.getValeur();
+            this._elDivJoueur.querySelector('.total').innerHTML = 'Total: ' + this._total;
+            if (this._total > 21) {
+                this._elDivJoueur.querySelector('.total').innerHTML = `Total: ${this._total}<br>Vous avez perdu!`;
+                this._elDivJoueur.classList.add('busted');
+                this._elDivJoueur.classList.add('stop');
+            }
         }.bind(this))
     }
 
-    /* get pointsTotaux() {
-        return this._total;
-    } */
+    stop() {
+        this._elStop.addEventListener('click', function() {
+            this._elDivJoueur.classList.add('stop');
+        }.bind(this))
+    }
 
     enleverFormulaire() {
         document.querySelector('form').classList.add('hidden');
     }
 
     injectCard(carte) {
-        let cardDOM = `<li>${carte.numero} de ${carte.type}</li>`;
+        let cardDOM = carte.setContenuCarte();
         this._cartesList.insertAdjacentHTML('beforeend', cardDOM);
         new Card(this._cartesList.lastElementChild);
     }
-
     }
 
 

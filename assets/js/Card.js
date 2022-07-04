@@ -1,37 +1,51 @@
 export default class Card {
     constructor() {
-        
-        this._types = ['Pique', 'Carreau', 'Trèfle', 'Cœur '];
-        this._nums = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
-        this._cartesTab = [];
-        
-
         this.init();
+        let i = Math.floor(Math.random() * 13);
+        //console.log(i);
+        this._numero = this.nums[i];
+        this._type = this.types[i % 4];
+        this._valeur = this.valeurs[i];
     }
 
+    types = ['Pique', 'Carreau', 'Trèfle', 'Cœur'];
+    nums = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
+    valeurs = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
+    
     init() {
-        this.getAllCards();
-        this.getOneCard();
+        this.setContenuCarte();
+        this.getValeur();
     }
 
-    getAllCards() {
-        for (let i = 0; i < this._types.length; i++) {
-            for (let j = 0; j < this._nums.length; j++) {
-                this._cartesTab.push(this._types[i] + '-' + this._nums[j]);
-            }
-        }
+    setContenuCarte() {
+        return `<li>${this._numero} de ${this._type}</li>`;
     }
 
-    getOneCard() {
-        for (let i = 0, c = this._cartesTab.length; i < c; i++) {
-            let j = Math.floor(Math.random() * c)
-            let temp = this._cartesTab[i];
-            this._cartesTab[i] = this._cartesTab[j];
-            this._cartesTab[j] = temp
-        }
-        
+    getValeur() {
+        return this._valeur;
     }
 
-    }
-
-
+    
+/*
+    getValeur() {
+        for (let i = 0; i < this._nums.length; i++) {
+            switch (this._nums[i]) {
+                case 'Ace':
+                    this._total += 11;
+                    break;
+                case 'Valet':
+                    this._total += 10;
+                    break;
+                case 'Dame':
+                    this._total += 10;
+                    break;
+                case 'Roi':
+                    this._total += 10;
+                    break;
+                default:
+                    this._total += this._nums[i];
+                    break;}
+                }
+            return this._total;}
+*/
+}
